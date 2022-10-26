@@ -2,7 +2,7 @@ https://gist.github.com/ad8118ad6923d411a00bd0cbe208e241
 
 # Non Max Suppression (NMS) in PyTorch
 
-![alt](images/header.png)
+![alt](/images/header.png)
 
 Today we'll see how to implement non max suppression in PyTorch
 
