@@ -456,6 +456,6 @@ If you think I've missed something, feel free to open an issue on [GitHub](https
 
 In this article we have seen how to implement non-max suppression in PyTorch, I hope it's not scary anymore!
 
-See you in the next one 🚀:
+See you in the next one 🚀
 
 Francesco
