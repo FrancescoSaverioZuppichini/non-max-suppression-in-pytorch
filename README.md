@@ -287,7 +287,7 @@ This will set to zero all the suppressed `bboxes` (since `keep` will be equal to
             (bboxes ...)[order[i + 1:]]
 ```
 
-We need to compare with all the next `bboxes` that come after in the sorted order and **we need to skip the current one**, so this is why we have a `+ 1`
+We need to compare with all the next `bboxes` in the sorted order and **we need to skip the current one**, so this is why we have a `+ 1`
 
 ```python
         overlapped = torch.nonzero(iou > iou_threshold)

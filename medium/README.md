@@ -170,7 +170,7 @@ This will set to zero all the suppressed `bboxes` (since `keep` will be equal to
 
 https://gist.github.com/aed279727f34b6593007dfa2144a82d8
 
-We need to compare with all the next `bboxes` that come after in the sorted order and **we need to skip the current one**, so this is why we have a `+ 1`
+We need to compare with all the next `bboxes` after in the sorted order and **we need to skip the current one**, so this is why we have a `+ 1`
 
 https://gist.github.com/f6574e6a9f5bae5c2dcb2ff77e102aa9
 
