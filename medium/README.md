@@ -6,7 +6,7 @@ https://gist.github.com/ad8118ad6923d411a00bd0cbe208e241
 
 Today we'll see how to implement non max suppression in PyTorch
 
-*Code is [here](https://github.com/FrancescoSaverioZuppichini/non-max-suppression-in-pytorch) and interactive version of this article can be found [here](https://github.com/FrancescoSaverioZuppichini/non-max-suppression-in-pytorch/blob/main/README.ipynb)*
+*Code is [here](https://github.com/FrancescoSaverioZuppichini/non-max-suppression-in-pytorch) and an interactive version of this article can be found [here](https://github.com/FrancescoSaverioZuppichini/non-max-suppression-in-pytorch/blob/main/README.ipynb)*
 
 ## Preambula
 
