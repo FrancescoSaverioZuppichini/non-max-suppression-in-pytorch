@@ -4,21 +4,21 @@
 
 # Non Max Suppression (NMS) in PyTorch
 
-![alt](images/header.png)
+![alt](/images/images/header.png)
 
 Today we'll see how to implement non max suppression in PyTorch
 
-*Code is [here](https://github.com/FrancescoSaverioZuppichini/non-max-suppression-in-pytorch) and an interactive version of this article can be found [here](https://github.com/FrancescoSaverioZuppichini/non-max-suppression-in-pytorch/blob/main/README.ipynb)*
+*Code is [here](/images/https://github.com/FrancescoSaverioZuppichini/non-max-suppression-in-pytorch) and an interactive version of this article can be found [here](/images/https://github.com/FrancescoSaverioZuppichini/non-max-suppression-in-pytorch/blob/main/README.ipynb)*
 
 ## Preambula
 
 If you are doing computer vision (especially object detection), you know what *non max suppression (nms)* is. There are a lot of good articles online giving a proper overview. In a nutshell, *non max suppression* reduces the number of output bounding boxes using some heuristics, e.g. intersection over union (iou).
 
-From [`PyTorch` doc](https://pytorch.org/vision/stable/generated/torchvision.ops.nms.html) 
+From [`PyTorch` doc](/images/https://pytorch.org/vision/stable/generated/torchvision.ops.nms.html) 
 
 >NMS iteratively removes lower-scoring boxes which have an IoU greater than iou_threshold with another (higher-scoring) box.
 
-[This is an amazing article](https://towardsdatascience.com/non-maximum-suppression-nms-93ce178e177c) from [ Sambasivarao K](https://medium.com/@SambasivaraoK) that goes trough *nms*, giving you a very good idea of what it does.
+[This is an amazing article](/images/https://towardsdatascience.com/non-maximum-suppression-nms-93ce178e177c) from [ Sambasivarao K](/images/https://medium.com/@SambasivaraoK) that goes trough *nms*, giving you a very good idea of what it does.
 
 Now assume we know what it does, let's see how it works.
 
@@ -42,7 +42,7 @@ img
 
 
     
-![png](output_4_0.png)
+![png](/images/output_4_0.png)
     
 
 
@@ -98,7 +98,7 @@ plot_bboxes(img, original_bboxes, labels=["head", "mic"])
 
 
     
-![png](output_8_1.png)
+![png](/images/output_8_1.png)
     
 
 
@@ -125,7 +125,7 @@ plot_bboxes(img, bboxes, colors=[*["yellow"] * 4, *["blue"] * 4], labels=[*["hea
 
 
     
-![png](output_10_1.png)
+![png](/images/output_10_1.png)
     
 
 
@@ -179,7 +179,7 @@ plot_bboxes(img, bboxes,
 
 
     
-![png](output_19_1.png)
+![png](/images/output_19_1.png)
     
 
 
@@ -326,7 +326,7 @@ plot_bboxes(img,
 
 
     
-![png](output_25_1.png)
+![png](/images/output_25_1.png)
     
 
 
@@ -353,7 +353,7 @@ plot_bboxes(img,
 
 
     
-![png](output_27_1.png)
+![png](/images/output_27_1.png)
     
 
 
@@ -417,7 +417,7 @@ plot_bboxes(img,
 
 
     
-![png](output_32_1.png)
+![png](/images/output_32_1.png)
     
 
 
@@ -443,7 +443,7 @@ torch_nms(bboxes + labels[..., None], scores, .45)
 
 our implementation is around 10 times slower, I think It makes sense considering we are not using a custom cpp kernel!
 
-If you think I've missed something, feel free to open an issue on [GitHub](https://github.com/FrancescoSaverioZuppichini/non-max-suppression-in-pytorch) :)
+If you think I've missed something, feel free to open an issue on [GitHub](/images/https://github.com/FrancescoSaverioZuppichini/non-max-suppression-in-pytorch) :)
 
 In this article we have seen how to implement non-max suppression in PyTorch, I hope it's not scary anymore!
 
