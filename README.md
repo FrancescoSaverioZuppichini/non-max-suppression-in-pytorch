@@ -4,7 +4,7 @@
 
 # Non Max Suppression (NMS) in PyTorch
 
-![alt](/images/images/header.png)
+![alt](/images/header.png)
 
 Today we'll see how to implement non max suppression in PyTorch
 
