@@ -34,7 +34,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # credit https://i0.wp.com/craffic.co.in/wp-content/uploads/2021/02/ai-remastered-rick-astley-never-gonna-give-you-up.jpg?w=1600&ssl=1
-img = Image.open("./samples/never-gonna-give-you-up.webp")
+img = Image.open("./examples/never-gonna-give-you-up.webp")
 img
 ```
 
@@ -42,7 +42,7 @@ img
 
 
     
-![png](/images/output_4_0.png)
+![png](output_4_0.png)
     
 
 
@@ -92,13 +92,13 @@ plot_bboxes(img, original_bboxes, labels=["head", "mic"])
 
 
 
-    <matplotlib.image.AxesImage at 0x7f354efe96d0>
+    <matplotlib.image.AxesImage at 0x7f6e6c633640>
 
 
 
 
     
-![png](/images/output_8_1.png)
+![png](output_8_1.png)
     
 
 
@@ -119,13 +119,13 @@ plot_bboxes(img, bboxes, colors=[*["yellow"] * 4, *["blue"] * 4], labels=[*["hea
 
 
 
-    <matplotlib.image.AxesImage at 0x7f354e79de50>
+    <matplotlib.image.AxesImage at 0x7f6e6c578070>
 
 
 
 
     
-![png](/images/output_10_1.png)
+![png](output_10_1.png)
     
 
 
@@ -173,13 +173,13 @@ plot_bboxes(img, bboxes,
 
 
 
-    <matplotlib.image.AxesImage at 0x7f357b9ff070>
+    <matplotlib.image.AxesImage at 0x7f6e6c4deee0>
 
 
 
 
     
-![png](/images/output_19_1.png)
+![png](output_19_1.png)
     
 
 
@@ -226,7 +226,7 @@ def nms(bboxes: torch.Tensor, scores: torch.Tensor, iou_threshold: float) -> tor
     for i in indices:
         if keep[i]:
             bbox = bboxes[order[i]]
-            iou = box_iou(bbox[None,...], (bboxes)[order[i + 1:]])
+            iou = box_iou(bbox[None,...],(bboxes[order[i + 1:]]) * keep[i + 1:][...,None])
             overlapped = torch.nonzero(iou > iou_threshold)
             keep[overlapped + i + 1] = 0
     return order[keep]
@@ -266,28 +266,28 @@ we iterate over all `bboxes`
 if current `bbox` is not suppressed `keep[i] = 1`
 
 ```python
-        bbox = bboxes[bbox = bboxes[order[i]]]
+        bbox = bboxes[order[i]]
 ```
 
 get `bbox` using the sorted position
 
 ```
-        iou = box_iou(bbox[None,...], (bboxes * keep[...,None])[order[i + 1:]])
+            iou = box_iou(bbox[None,...], (bboxes[order[i + 1:]]) * keep[i + 1:][...,None])
 ```
 
 calculate `iou` between current `bbox` and all the other candidates. Notice two things
 
 ```python
-            (bboxes * keep[...,None])
+            (bboxes[order[i + 1:]] ... )
 ```
 
 This will set to zero all the suppressed `bboxes` (since `keep` will be equal to `0`)
 
 ```python
-            (bboxes ...)[order[i + 1:]]
+            (bboxes[...] * keep[...][...,None])
 ```
 
-We need to compare with all the next `bboxes` in the sorted order and **we need to skip the current one**, so this is why we have a `+ 1`
+We need to compare with all the next `bboxes` after in the sorted order and **we need to skip the current one**, so this is why we have a `+ 1`
 
 ```python
         overlapped = torch.nonzero(iou > iou_threshold)
@@ -320,13 +320,13 @@ plot_bboxes(img,
 
 
 
-    <matplotlib.image.AxesImage at 0x7f354e3ea340>
+    <matplotlib.image.AxesImage at 0x7f6e9a2b7550>
 
 
 
 
     
-![png](/images/output_25_1.png)
+![png](output_25_1.png)
     
 
 
@@ -347,13 +347,13 @@ plot_bboxes(img,
 
 
 
-    <matplotlib.image.AxesImage at 0x7f354e36c460>
+    <matplotlib.image.AxesImage at 0x7f6e9991caf0>
 
 
 
 
     
-![png](/images/output_27_1.png)
+![png](output_27_1.png)
     
 
 
@@ -384,15 +384,6 @@ def _interact(threshold: float):
 interact(_interact, threshold = .1)
 ```
 
-    0.1
-
-
-
-    
-![png](/images/output_30_1.png)
-    
-
-
 
     interactive(children=(FloatSlider(value=0.1, description='threshold', max=0.30000000000000004, min=-0.1), Outp…
 
@@ -420,13 +411,13 @@ plot_bboxes(img,
 
 
 
-    <matplotlib.image.AxesImage at 0x7f357c228580>
+    <matplotlib.image.AxesImage at 0x7f6e9a166df0>
 
 
 
 
     
-![png](/images/output_32_1.png)
+![png](output_32_1.png)
     
 
 
@@ -438,7 +429,7 @@ Same result! Let's see performance
 nms(bboxes + labels[..., None], scores, .45)
 ```
 
-    534 µs ± 22.1 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+    586 µs ± 22.5 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 
 
 
@@ -447,7 +438,7 @@ nms(bboxes + labels[..., None], scores, .45)
 torch_nms(bboxes + labels[..., None], scores, .45)
 ```
 
-    54.4 µs ± 3.29 µs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
+    51.2 µs ± 1.5 µs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
 
 
 our implementation is around 10 times slower, I think It makes sense considering we are not using a custom cpp kernel!
